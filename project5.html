@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body {
+            background-color: lightskyblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 50px;
+            /* width: 500px; */
+        }
+        
+        h2 {
+            margin-bottom: 10px;
+        }
+        
+        input {
+            margin: 10px 0;
+            width: 200px;
+            padding: 7px;
+        }
+        
+        button {
+            border: 0;
+            margin: 10px 0;
+            background-color: lightskyblue;
+            padding: 7px;
+            color: white;
+            width: 220px;
+        }
+        
+        .error {
+            color: red;
+            text-align: left;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" onsubmit="return validateForm()">
+        <div class="container">
+            <h2>Login</h2>
+            <input type="text" placeholder="Enter name" id="name">
+            <p class="error" id="nameerr"></p>
+            <input type="password" placeholder="Enter password" id="pass">
+            <p class="error" id="passerr"></p>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <script>
+        let name = document.getElementById("name");
+        let pass = document.getElementById("pass");
+        let passerr = document.getElementById("passerr");
+        let nameerr = document.getElementById("nameerr");
+        let flag = 1;
+
+
+        function validateForm() {
+            if (name.value == "") {
+                // console.log("empty");
+                document.getElementById("nameerr").innerHTML = "Username is required";
+                flag = 0;
+                name.addEventListener('input', changeerror);
+
+            } else {
+                document.getElementById("nameerr").innerHTML = "";
+            }
+            if (pass.value == "") {
+                document.getElementById("passerr").innerHTML = "Password is required";
+                flag = 0;
+
+                pass.addEventListener('input', changeerrorpass);
+            } else {
+                document.getElementById("passerr").innerHTML = "";
+            }
+            if (flag)
+                return true;
+            else
+                return false;
+        }
+        // console.log(x);
+        // x.addEventListener('input', changeerror);
+
+        function changeerror() {
+            document.getElementById("nameerr").innerHTML = "";
+            flag = 1;
+        }
+
+        function changeerrorpass() {
+            document.getElementById("passerr").innerHTML = "";
+            flag = 1;
+        }
+
+        // function change(ele) {
+        //     ele.innerHTML = "";
+        // }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //quick sort
+        // function qs(a) {
+        //     let l = a.length;
+        //     if (l <= 1) {
+        //         return a;
+        //     } else {
+        //         var na = [];
+        //         var s = [];
+        //         var e = [];
+        //         var p = a.pop();
+        //         var len = a.length;
+        //         for (var i = 0; i < len; i++) {
+
+        //             if (a[i] > p) {
+        //                 e.push(a[i]);
+
+        //             } else {
+        //                 s.push(a[i]);
+        //             }
+        //         }
+        //         return na.concat(qs(s), p, qs(e));
+        //     }
+        // }
+        // var a = [1, 3, 2, 1, 7, 3];
+        // let ans = qs(a);
+        // console.log(ans);
+
+        //practice closures
+        // function most(c) {
+        //     // var b = 5,
+        //     //     c = 0;
+        //     // console.log("hi");
+
+        //     function outer(b) {
+        //         let a = 10;
+        //         console.log(b);
+
+        //         function inner() {
+        //             console.log(a, b, c);
+        //         }
+        //         return inner;
+        //     }
+        //     return outer;
+        //     // outer("hello")();
+        // }
+        // // most("most")("hello")();
+        // // var ans1 = most();
+        // // ans1(5);
+
+        // function p1() {
+        //     let x = 10,
+        //         m = 5;
+
+        //     function p2() {
+        //         console.log(m);
+        //     }
+        //     return p2;
+        // }
+        // let result = p1();
+        // result();
+
+        // setTimeout(function() {
+        //     console.log("timer");
+        // }, 5000);
+
+        // function x(y) {
+        //     console.log("x");
+        //     y();
+        // }
+        // x(function y() {
+        //     console.log("y");
+        // })
+
+
+        // //flattening object
+        // var user = {
+        //     name: "Vishal",
+        //     address: {
+        //         primary: {
+        //             house: "109",
+        //             street: {
+        //                 main: "21",
+        //                 cross: "32"
+        //             }
+        //         }
+        //     }
+        // };
+        // // let flatten = {};
+        // const fo = (user) => {
+        //     let flatten = {};
+        //     for (let key in user) {
+        //         if ((typeof user[key]) === "object") {
+        //             const temp = fo(user[key]);
+        //             for (let j in temp) {
+        //                 // console.log(temp[j]);
+        //                 flatten[key + '_' + j] = temp[j];
+        //             }
+        //         } else {
+        //             flatten[key] = user[key];
+        //         }
+        //     }
+        //     console.log(flatten);
+        //     return flatten;
+        // };
+        // // fo(user);
+        // console.log(fo(user));
+
+        //bs
+        // function bs(inp) {
+        //     //     for (let j = 0; j < inp.length; j++) {
+        //     //         let flag = true;
+        //     //         for (let i = 0; i < inp.length - j - 1; i++) {
+        //     for (let j = inp.length; j > 0; j--) {
+        //         let flag = true;
+        //         for (let i = 0; i < j; i++) {
+        //             if (inp[i] > inp[i + 1]) {
+        //                 let temp = inp[i];
+        //                 inp[i] = inp[i + 1];
+        //                 inp[i + 1] = temp;
+        //                 flag = false;
+        //             }
+        //         }
+        //         if (flag) {
+        //             break;
+        //         }
+        //     }
+        //     return inp;
+        // }
+        // let ar = [1, 4, 2, 8, 0, 3, 3]
+        // let final = bs(ar);
+        // console.log(final);
+
+        var ele = [3, 6, 7, 1, -3, 0, -9];
+
+        let l = 0,
+            r = ele.length;
+
+        function combine(mer, l, m, r) {
+            let temp = [];
+            let i = l,
+                k = 0,
+                j = m + 1;
+            while (i <= m && j <= r) {
+                if (ele[i] <= ele[j]) {
+                    temp[k] = ele[i];
+                    i++;
+                } else {
+                    temp[k] = ele[j];
+                    j++;
+                }
+                k++;
+            }
+            console.log(temp);
+            while (i <= m) {
+                temp[k] = ele[i];
+                k++;
+                i++;
+            }
+            while (j <= r) {
+                temp[k] = ele[j];
+                j++;
+                k++;
+            }
+            for (let x = l; x <= r; x++) {
+                ele[x] = temp[x];
+            }
+            return ele;
+        }
+
+        function ms(mer, l, r) {
+            if (l >= r) {
+                return;
+            } else {
+                let m = parseInt((r + l) / 2);
+                // console.log(m);
+                ms(mer, l, m);
+                ms(mer, m + 1, r);
+                combine(mer, l, m, r);
+            }
+        }
+        let ab = ms(ele, 0, r - 1);
+        console.log(ab);
+    </script>
+</body>
+
+</html>

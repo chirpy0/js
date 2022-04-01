@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- beforebegin -->
+    <ul id="list">
+        <!-- afterbegin -->
+        <li>list 1</li>
+        <li>list 2</li>
+        <li>list 3</li>
+        <li>list 4</li>
+        <!-- beforeend -->
+    </ul>
+    <!-- afterend -->
+    <button id="btn" name="form1" onclick="removeHandler()">submit</button>
+    <button id="clickbtn" onclick="fun()">click me!</button>
+    <input type="color" id="color" name="color" value=""><br><br>
+    <input id="input">
+    <div id="div1" style="width: 500px;height: 100px; background-color: aqua;"></div><br>
+    <div id="div2" style="width: 500px;height: 100px; background-color: blueviolet;"></div>
+
+    <script>
+        // let a = 'a'
+        // let b = 'b'
+        // if (a < b) { // true
+        //     console.log(a + ' is less than ' + b)
+        // } else if (a > b) {
+        //     console.log(a + ' is greater than ' + b)
+        // } else {
+        //     console.log(a + ' and ' + b + ' are equal.')
+        // }
+        // let a = 0;
+        // alert(Boolean(a)); // false
+
+        // let b = "0";
+        // alert(Boolean(b)); // true
+
+        // alert(a == b); // true!
+        // alert(alert(1) || alert(2));
+        const cars = []; //array
+        let person = {
+            fname: 'ava',
+            lname: 'smith'
+        }; //object
+        //access object prperty
+        person.fname;
+        person['lname'];
+        person.age = 20; //add
+        delete person.age; //delete property
+        console.log('height' in person); //in operator check the propertyy present in object or not.
+
+        //iterate properties name using for in loop for objects
+        for (let key in person) {
+            // console.log(key);
+            console.log(key + ": " + person[key]); //dot notation doesnot work
+        }
+        //iterate property value using for of loop in array(for of only iterate array not object)
+        // for (let i of person) {
+        //     console.log(i); //show error 
+        // }
+
+        //methods declared by 4 types
+        person.sayhello = function() { //1st
+            console.log("hey");
+        }
+
+        function greet() {
+            console.log("hey");
+        }
+        person.sayhello = greet; //2nd
+        let person1 = {
+            fname: 'ava',
+            lname: 'smith',
+            sayhello: function() {
+                console.log("hey!");
+            }, //3rd
+            sayhello1() {
+                console.log('hey');
+            } //4th
+        };
+        person.sayhello();
+
+        //constructor(roadmap to create similiar type of object)
+        function Person(fname, lname) {
+            this.fname = fname;
+            this.lname = lname;
+        } //create objects from constructor
+        const p1 = new Person('ava', 'smith');
+        //prototype(used to add property in constructor)
+        Person.prototype.age = 40;
+        console.log(p1);
+
+        //append in ul list
+        let ele = document.getElementById("list");
+        let item = document.createElement("li");
+        item.textContent = "new List 5";
+        ele.appendChild(item);
+
+        //in which position we append new element
+        //at top
+        let nele = ele.firstElementChild;
+        // ele.insertBefore(item, nele);
+        //next
+        let pos = ele.firstElementChild.nextElementSibling; //and so on
+        ele.insertBefore(item, pos);
+        //removeelement
+        ele.removeChild(pos);
+
+        //clone element
+        let clone = pos.cloneNode(true); //if true clone all including child and if false only parent is selected
+        //pos=list 2
+        ele.appendChild(clone);
+
+        //replace 
+        let lst = ele.lastChild;
+        let item1 = document.createElement("li");
+        item1.textContent = "List 2";
+        ele.replaceChild(item1, lst);
+
+        //insert adjacent html elements in 4 positions(beforebegin,afterbegin,beforeend,afterend)
+        let html = "<h1>add html</h1>";
+        ele.insertAdjacentHTML('beforebegin', html);
+
+        //attributes
+        let att = document.getElementById('btn');
+        att.setAttribute('class', 'btn'); //set
+        att.getAttribute('class'); //get attribute
+        att.removeAttribute('class', 'btn'); //remove
+        let get = att.hasAttribute('class', 'btn'); //check if attribute present or not
+
+        //addcss property
+        att.style.cssText = "color:white;background-color:red;";
+        att.style.cssText += "color:white;background-color:red;"; //use + to fetch alinline property define earlier
+        att.setAttribute('style', 'color:white;background-color:red;'); //using set attribute
+        att.style.color = "white";
+        //getcomputedcss
+        let css = getComputedStyle(att);
+        //css class
+        att.className; //get all classes present
+        att.className += "list"; //add class 
+        att.classList; //in array
+        att.classList.add("newcls");
+        att.classList.replace("newcls", "test");
+        att.classList.toggle("test"); //toggle add class if not present and remove if present.
+        // console.log(css.color);
+
+        //events(create 3 types)
+        let clickbtn = document.getElementById("clickbtn");
+        clickbtn.addEventListener('click', function() { //1st
+            console.log("clicked successful");
+        });
+        //2nd define function separately
+        // clickbtn.onclick = clickfun;
+        document.getElementById("clickbtn").addEventListener("click", clickfun);
+
+        function clickfun() {
+            console.log("using function clicked");
+        }
+        //3rd used events in html and call function <button onclick="clickfun()"></button>
+        function removeHandler() {
+            document.getElementById("clickbtn").removeEventListener("click", clickfun);
+        }
+        //scroll event
+        window.addEventListener('wheel', function(event) {
+            // check scroll up and down  
+            // console.log(event.deltaY);
+            if (event.deltaY < 0) {
+                console.log('scroll up');
+            }
+            if (event.deltaY > 0) {
+                console.log('scroll down');
+            }
+
+        }); //pageYOffset tellhow much page is scrolled in pixel
+        var flag = 0;
+        window.addEventListener('scroll', function(event) {
+
+            if (window.pageYOffset > 100) {
+                document.body.style.backgroundColor = "red";
+                // alert('scroll 100');
+
+                flag = 1;
+            } else {
+                document.body.style.backgroundColor = "white";
+            }
+        });
+        //input events
+        let x = document.getElementById('input');
+        x.addEventListener('focus', focusFun);
+        x.addEventListener('blur', blurFun);
+        x.addEventListener('change', changeFun); //detect after change input completed and we click outside
+        x.addEventListener('input', changeFun); //detect just by changing input
+
+        function focusFun() {
+            x.style.backgroundColor = "yellow";
+        }
+
+        function blurFun() {
+            x.style.backgroundColor = "white";
+        }
+
+        function changeFun() {
+            console.log(this.value);
+        }
+
+        //capturing(parent to child,add true as third agrument) and bubbling(child to parent,default)
+    </script>
+    <script>
+        //bom
+        //exceutes a function afterwaiting a specified ttime we use setTimeout
+        let settime = setTimeout(myFun, 5000);
+        var settime1 = setInterval(myFun, 2000); //set interval for repeating function
+        function myFun() {
+            console.log("hello");
+        }
+        //clear time out
+        clearTimeout(settime);
+        clearInterval(settime1); //for clearing interval event
+        //location object(get info of current url,where to redirect)--properties
+        console.log(location.href);
+        console.log(location.pathname);
+        console.log(location.protocol);
+
+        //redirect
+        function fun() {
+            // window.location = "https://www.google.com"; //1st
+            // location.href = "https://www.google.com";//2nd
+            // location.assign("https://www.google.com"); //3rd
+            location.replace("https://www.google.com"); //browser me history nhi daalta thn we didnot have back option
+
+        }
+        //function statement or declaration
+        function f1() {
+            console.log('hi');
+        }
+        //function expression
+        var fun = function() {
+
+            }
+            //first class function-ability to use a function as  a value
+        var val = function xyz() {
+            console.log(xyz);
+        }
+        console.log(val());
+
+        //total time spent on page
+        /*   (function() {
+               "use strict";
+
+               // var secondsSpentElement = document.getElementById("seconds-spent");
+               // var millisecondsSpentElement = document.getElementById("milliseconds-spent");
+               // requestAnimationFrame(
+               function updateTimeSpent() {
+                   var timeNow = performance.now();
+                   // console.log(timeNow);
+                   // console.log(timeNow / 1000);
+                   // secondsSpentElement.value = round(timeNow / 1000);
+                   // millisecondsSpentElement.value = round(timeNow);
+                   // timeNow = round(timeNow / 1000);
+                   // setInterval(requestAnimationFrame(updateTimeSpent), 5000);
+                   if (timeNow == 5) {
+                       console.log(timeNow / 1000);
+                       alert('5 sec done');
+                   }
+                   // requestAnimationFrame(updateTimeSpent);
+               }
+               // setInterval(updateTimeSpent, 5000);
+               // if (timeNow == 5) {
+               // );
+               document.addEventListener("visibilitychange", (event) => {
+                   if (document.visibilityState == "visible") {
+                       console.log("tab is active");
+                       performance = 0;
+                       var performance = window.performance,
+                           round = Math.round;
+
+                   } else {
+                       console.log("tab is inactive");
+                       performance = 0;
+                   }
+               });
+           })();
+           */
+
+        // document.addEventListener("visibilitychange", (event) => {
+
+        //     if (document.visibilityState == "visible") {
+        //         var performance = window.performance,
+        //             round = Math.round;
+        //         let timeNow = performance.now();
+        //         timeNow = timeNow / 1000;
+        //         console.log(timeNow + "is active");
+
+        //     } else {
+        //         console.log("tab is inactive");
+        //         // console.log(performance);
+        //         // performance = 0;
+        //     }
+        // });
+
+
+
+        var hidden, visibilityChange;
+        if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+            hidden = "hidden";
+            visibilityChange = "visibilitychange";
+        } else if (typeof document.msHidden !== "undefined") {
+            hidden = "msHidden";
+            visibilityChange = "msvisibilitychange";
+        } else if (typeof document.webkitHidden !== "undefined") {
+            hidden = "webkitHidden";
+            visibilityChange = "webkitvisibilitychange";
+        }
+
+        function updateTimeSpent() {
+
+            if (document[hidden]) {
+                // videoElement.pause();
+                console.log(timeNow + "is inactive");
+
+
+            } else {
+
+                let timeNow = performance.now();
+                timeNow = Math.round(timeNow);
+                console.log(timeNow + "is active");
+                console.log(timeNow / 1000);
+                // alert('5 sec done');
+            }
+
+        }
+        setInterval(updateTimeSpent, 5000);
+    </script>
+    <!-- // let back = document.body; // let inp = document.getElementById("color"); // inp.addEventListener('change', function() { // let color1 = inp.value; // document.body.style.backgroundColor = color1; // }); // console.log(back.style.cssText); -->
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word counter</title>
+    <style>
+        body {
+            padding: 0 100px;
+            /* text-align: center; */
+        }
+        
+        #heading {
+            color: white;
+            background-color: lightskyblue;
+            padding: 10px;
+            margin: 0px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        #para {
+            text-align: center;
+            font-weight: bold;
+            background-color: lightskyblue;
+            color: white;
+            padding: 10px;
+            font-size: 25px;
+            margin: 0;
+        }
+        
+        #text {
+            border-color: lightskyblue;
+            width: 99.3%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="container"> -->
+    <h1 id="heading">Word character counter</h1>
+    <textarea id="text" cols="30" rows="10"></textarea>
+    <p id="para">
+        <span id="word">0</span> Words
+        <span id="char">0</span> Characters
+    </p>
+
+    <!-- </div> -->
+
+    <script>
+        var text = document.getElementById("text");
+        text.addEventListener('input', function() {
+            var val = this.value;
+            countCh = val.length;
+            document.getElementById("char").innerHTML = countCh;
+            val.trim();
+            console.log(val);
+            let words = val.split(" ");
+            let newword = words.filter(function(ele) {
+                return !ele == "";
+            })
+            document.getElementById("word").innerHTML = newword.length;
+        });
+    </script>
+</body>
+
+</html>

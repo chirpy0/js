@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <style>
+        body {
+            background-color: lightskyblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 50px;
+            /* width: 500px; */
+        }
+        
+        h2 {
+            margin-bottom: 10px;
+        }
+        
+        input {
+            margin: 10px 0;
+            width: 200px;
+            padding: 7px;
+        }
+        
+        button {
+            border: 0;
+            margin: 10px 0;
+            background-color: lightskyblue;
+            padding: 7px;
+            color: white;
+            width: 220px;
+        }
+        
+        .error {
+            color: red;
+            text-align: left;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" id="myForm">
+        <div class="container">
+            <h2>Login</h2>
+            <input type="text" placeholder="Enter name" id="name" />
+            <p class="error" id="nerror"></p>
+            <input type="password" placeholder="Enter password" id="pass" />
+            <p class="error" id="perror"></p>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <script>
+        let name = document.getElementById("name");
+        let pass = document.getElementById("pass");
+        let myForm = document.getElementById("myForm");
+        let flag = 1;
+
+        let inputs = document.querySelectorAll("input");
+
+        function validateForm(args) {
+            console.log(args);
+            let flag = false;
+            for (input of args) {
+                if (input.value == "") {
+                    console.log(input.type);
+                    return false;
+                }
+                if (input.type == "text") {
+                    if (input.value.length > 5) {
+                        flag = true;
+                    } else {
+                        return false;
+                    }
+                }
+
+                if (input.type == "password") {
+                    flag = true;
+                }
+            }
+
+            return flag;
+        }
+
+        function validate(obj) {
+            let arr = [];
+            for (key in obj) {
+                let selector = document.querySelector(key);
+                let value = obj[key];
+                arr = value.split("|");
+                for (item of arr) {
+                    if (value.includes("required")) {
+                        if (selector.value == "") {
+                            console.log("required");
+                            return false;
+                        }
+                        if (value.includes("min")) {
+                            let t = item.split(":");
+                            if (t[0] == "min") {
+                                if (selector.value.length < t[1]) {
+                                    console.log("enter minimum " + t[1]);
+                                    return false;
+                                }
+                            }
+                        }
+                        if (value.includes("max")) {
+                            let t = item.split(":");
+                            if (t[0] == "max") {
+                                if (selector.value.length > t[1]) {
+                                    console.log("enter maximum " + t[1]);
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        myForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            // if (validateForm(input)) {
+            //   console.log("submit form");
+            // } else {
+            //   console.log("required");
+            // }
+            let flag = validate({
+                "#name": "required|max:12",
+                "#pass": "required|max:12",
+            });
+            if (flag) {
+                console.log("submit form");
+            } else {
+                console.log("bsdk ke bakchodu");
+            }
+        });
+    </script>
+</body>
+
+</html>

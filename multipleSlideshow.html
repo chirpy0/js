@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <link rel="stylesheet" href="pro6css.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="slider">
+            <div class="slide1">
+                <img src="img/pic.jpg">
+                <p class="caption">Caption 1</p>
+            </div>
+            <div class="slide1"> <img src="img/pic.jpg">
+                <p class="caption">Caption 2</p>
+            </div>
+
+            <div class="slide1"> <img src="img/pic.jpg">
+                <p class="caption">Caption 3</p>
+            </div>
+            <div class="slide1"> <img src="img/pic.jpg">
+                <p class="caption">Caption 4</p>
+            </div>
+
+            <span class="leftside arrow prev" type="button" onclick="inc(-1,0)">&#10094</span>
+            <span class="rightside arrow next" type="button" onclick="inc(1,0)">&#10095</span>
+
+            <br>
+            <div style="text-align: center;">
+                <!-- <span class="dots1" onclick="currentSlide(0,0)"></span> -->
+                <span class="dots1" onclick="currentSlide(1,0)"></span>
+                <span class="dots1" onclick="currentSlide(2,0)"></span>
+                <span class="dots1" onclick="currentSlide(3,0)"></span>
+                <span class="dots1" onclick="currentSlide(4,0)"></span>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <p>Slideshow 2:</p>
+        <div class="slide2">
+            <img src="img/pic.jpg">
+            <p class="caption">Caption 1</p>
+        </div>
+        <div class="slide2"> <img src="img/pic.jpg">
+            <p class="caption">Caption 2</p>
+        </div>
+
+        <div class="slide2"> <img src="img/pic.jpg">
+            <p class="caption">Caption 3</p>
+        </div>
+        <div class="slide2"> <img src="img/pic.jpg">
+            <p class="caption">Caption 4</p>
+        </div>
+
+        <span class="leftside arrow prev" type="button" onclick="inc(-1,1)">&#10094;</span>
+        <span class="rightside arrow next" type="button" onclick="inc(1,1)">&#10095;</span>
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <!-- <span class="dots2" onclick="currentSlide(0,1)"></span> -->
+        <span class="dots2" onclick="currentSlide(1,1)"></span>
+        <span class="dots2" onclick="currentSlide(2,1)"></span>
+        <span class="dots2" onclick="currentSlide(3,1)"></span>
+        <span class="dots2" onclick="currentSlide(4,1)"></span>
+
+    </div>
+
+
+    <script src="pro6.js"></script>
+</body>
+
+</html>

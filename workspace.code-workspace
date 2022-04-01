@@ -1,0 +1,16 @@
+{
+    "folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "c:\\xampp\\htdocs\\website"
+		},
+		{
+			"path": "c:\\Users\\Boonoz-C\\OneDrive\\Desktop\\njs"
+		}
+	],
+    "settings": {
+        "liveServer.settings.multiRootWorkspaceName": "js"
+    }
+}
